@@ -41,6 +41,7 @@ class Home extends React.Component {
                  <li><strong>Gender:</strong> {character.gender}</li>
                </ul>
                <img src="../img/delete.png" onClick = {this.handleDelete.bind(this,character.characterId )} alt="Smiley face" height="42" width="42"/>
+               <Link to={'/add/'+character.characterId +'/true/'+ character.name+'/'+character.password+'/'+character.gender}><img src="../img/edit.png" alt="Smiley face" height="30" width="30"/></Link>
              </div>
            </div>
          </div>

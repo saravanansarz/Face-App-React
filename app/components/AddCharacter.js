@@ -10,6 +10,9 @@ class AddCharacter extends React.Component {
   }
 
   componentDidMount() {
+    if(this.props.routeParams.edit){
+          this.setState({'name':this.props.routeParams.name,'password':this.props.routeParams.pass,'gender':this.props.routeParams.gender});
+    }
     AddCharacterStore.listen(this.onChange);
   }
 
@@ -24,6 +27,7 @@ class AddCharacter extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
+    var id = this.props.routeParams.characterId.trim();
     var name = this.state.name.trim();
     var password = this.state.password.trim();
     var gender = this.state.gender;
@@ -38,7 +42,12 @@ class AddCharacter extends React.Component {
     }
 
     if (name && password &&  gender) {
+      if(!this.props.routeParams.edit){
       AddCharacterActions.addCharacter(name, password, gender);
+    }
+    else{
+        AddCharacterActions.editCharacter(id,name, password, gender);
+    }
     }
   }
 

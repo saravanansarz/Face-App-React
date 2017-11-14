@@ -40,6 +40,24 @@ app.get('/api/characters', function(req, res, next) {
     });
 });
 /**
+ * POST /api/editCharacter
+ * Edit a  character from the database.
+ */
+app.post('/api/editCharacter', function(req, res, next) {
+  var id = req.body.id;
+  var gender = req.body.gender;
+  var characterName = req.body.name;
+  var password = req.body.password;
+  Character.updateOne({characterId:id},{
+                            name: characterName,
+                            password: password,
+                            gender: gender
+                          },function(err) {
+                if (err) return next(err);
+                res.send({ message: characterName + ' has been updated successfully!' });
+              });
+});
+/**
  * POST /api/deleteCharacter
  * Delete a  character from the database.
  */

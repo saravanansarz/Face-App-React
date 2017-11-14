@@ -13,6 +13,20 @@ class AddCharacterActions {
     );
   }
 
+  editCharacter(id,name, password, gender) {
+    $.ajax({
+      type: 'POST',
+      url: '/api/editCharacter',
+      data: { id: id, name: name, password: password,  gender: gender }
+    })
+      .done((data) => {
+        this.actions.addCharacterSuccess(data.message);
+      })
+      .fail((jqXhr) => {
+        this.actions.addCharacterFail(jqXhr.responseJSON.message);
+      });
+  }
+
   addCharacter(name, password, gender) {
     $.ajax({
       type: 'POST',

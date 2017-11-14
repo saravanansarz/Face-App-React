@@ -8,5 +8,6 @@ export default (
   <Route component={App}>
     <Route path='/' component={Home} />
     <Route path='/add' component={AddCharacter} />
+    <Route path='/add/:characterId/:edit/:name/:pass/:gender' component={AddCharacter} />
   </Route>
 );

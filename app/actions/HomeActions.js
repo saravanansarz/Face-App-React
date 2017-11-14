@@ -1,5 +1,4 @@
 import alt from '../alt';
-
 class HomeActions {
   constructor() {
     this.generateActions(
@@ -16,7 +15,7 @@ class HomeActions {
     });
   }
 
-  getTwoCharacters() {
+getTwoCharacters() {
     $.ajax({ url: '/api/characters' })
       .done(data => {
         this.actions.getTwoCharactersSuccess(data);
