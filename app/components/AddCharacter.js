@@ -26,8 +26,6 @@ class AddCharacter extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-
-    var id = this.props.routeParams.characterId.trim();
     var name = this.state.name.trim();
     var password = this.state.password.trim();
     var gender = this.state.gender;
@@ -46,6 +44,7 @@ class AddCharacter extends React.Component {
       AddCharacterActions.addCharacter(name, password, gender);
     }
     else{
+          var id = this.props.routeParams.characterId;
         AddCharacterActions.editCharacter(id,name, password, gender);
     }
     }

@@ -5,10 +5,14 @@ class HomeStore {
   constructor() {
     this.bindActions(HomeActions);
     this.characters = [];
+    this.message = "";
   }
 
   onGetTwoCharactersSuccess(data) {
     this.characters = data;
+  }
+  onGetDeleteSuccess(data) {
+    this.message = data.message;
   }
 
   onGetTwoCharactersFail(errorMessage) {

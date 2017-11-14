@@ -12,6 +12,7 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
+    this.state.message = "";
     HomeStore.listen(this.onChange);
     HomeActions.getTwoCharacters();
   }
@@ -25,7 +26,7 @@ class Home extends React.Component {
   }
 
   handleDelete(characterId,event) {
-      HomeActions.deleteCharacter(characterId);
+      HomeActions.deleteCharacter(this,characterId);
   }
 
   render() {
@@ -40,8 +41,10 @@ class Home extends React.Component {
                <ul className='list-inline'>
                  <li><strong>Gender:</strong> {character.gender}</li>
                </ul>
-               <img src="../img/delete.png" onClick = {this.handleDelete.bind(this,character.characterId )} alt="Smiley face" height="42" width="42"/>
-               <Link to={'/add/'+character.characterId +'/true/'+ character.name+'/'+character.password+'/'+character.gender}><img src="../img/edit.png" alt="Smiley face" height="30" width="30"/></Link>
+                <div className='row'>
+               <span className='col-md-6'   > <img src="../img/delete.png" onClick = {this.handleDelete.bind(this,character.characterId )} alt="Smiley face" height="50" width="50"/></span>
+               <Link className='col-md-6'  to={'/add/'+character.characterId +'/true/'+ character.name+'/'+character.password+'/'+character.gender}><img src="../img/edit.png" alt="Smiley face" height="40" width="40"/></Link>
+             </div>
              </div>
            </div>
          </div>
@@ -50,6 +53,7 @@ class Home extends React.Component {
 
      return (
        <div className='container'>
+         <div className="alert alert-info fade in">{ this.state.message}</div>
          <div className='row'>
            {characterNodes}
          </div>

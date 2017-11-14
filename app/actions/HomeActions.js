@@ -3,16 +3,22 @@ class HomeActions {
   constructor() {
     this.generateActions(
       'getTwoCharactersSuccess',
-      'getTwoCharactersFail'
+      'getTwoCharactersFail',
+      'getDeleteSuccess'
     );
   }
 
-  deleteCharacter(characterId) {
+deleteCharacter(scope,characterId,event) {
     $.ajax({
       type: 'POST',
       url: '/api/deleteCharacter',
       data: { characterId: characterId}
-    });
+    })    .done(data => {
+          this.actions.getDeleteSuccess(data);
+        })
+        .fail(jqXhr => {
+          this.actions.getTwoCharactersFail(jqXhr.responseJSON.message);
+        });
   }
 
 getTwoCharacters() {
